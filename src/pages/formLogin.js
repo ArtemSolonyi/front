@@ -14,18 +14,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
+const react_redux_1 = require("react-redux");
 const Input_1 = __importDefault(require("../components/Input"));
 const Button_1 = __importDefault(require("../components/Butttons/Button"));
-const AuthService_1 = __importDefault(require("../services/AuthService"));
-const MovieService_1 = require("../services/MovieService");
+// @ts-ignore
+const users_reducer_1 = require("../users/users.reducer");
 const FormLogin = () => {
     const [enteredEmail, setEnteredEmail] = (0, react_1.useState)('');
     const [enteredPassword, setEnteredPassword] = (0, react_1.useState)('');
     const [movies, setMovies] = (0, react_1.useState)();
+    // @ts-ignore
+    const user = (0, react_redux_1.useSelector)(state => state.usersReducer);
+    const dispatch = (0, react_redux_1.useDispatch)();
     const submitHandler = (event) => __awaiter(void 0, void 0, void 0, function* () {
         event.preventDefault();
-        yield AuthService_1.default.login(enteredEmail, enteredPassword);
-        yield MovieService_1.MovieService.getMovie().then(movies => console.log(movies));
+        console.log(user);
+        dispatch((0, users_reducer_1.loginCreator)({ enteredEmail, enteredPassword }));
+        // await MovieService.getMovie().then(movies => console.log(movies))
+        console.log(user);
         setEnteredEmail('');
         setEnteredPassword('');
     });
@@ -35,6 +41,6 @@ const FormLogin = () => {
     const passwordHandler = (event) => {
         setEnteredPassword(event.currentTarget.value);
     };
-    return ((0, jsx_runtime_1.jsx)("div", { children: (0, jsx_runtime_1.jsxs)("form", Object.assign({ onSubmit: submitHandler }, { children: [(0, jsx_runtime_1.jsx)(Input_1.default, { type: 'text', value: enteredEmail, change: emailHandler, placeholder: 'Email' }), (0, jsx_runtime_1.jsx)(Input_1.default, { type: 'text', value: enteredPassword, change: passwordHandler, placeholder: 'Password' }), (0, jsx_runtime_1.jsx)(Button_1.default, { value: 'Login', type: "submit" })] })) }));
+    return ((0, jsx_runtime_1.jsxs)("form", Object.assign({ onSubmit: submitHandler }, { children: [(0, jsx_runtime_1.jsx)(Input_1.default, { type: 'text', value: enteredEmail, change: emailHandler, placeholder: 'Email' }), (0, jsx_runtime_1.jsx)(Input_1.default, { type: 'text', value: enteredPassword, change: passwordHandler, placeholder: 'Password' }), (0, jsx_runtime_1.jsx)(Button_1.default, { value: 'Login', type: "submit" })] })));
 };
 exports.default = FormLogin;
