@@ -22,16 +22,10 @@ const users_reducer_1 = require("../users/users.reducer");
 const FormLogin = () => {
     const [enteredEmail, setEnteredEmail] = (0, react_1.useState)('');
     const [enteredPassword, setEnteredPassword] = (0, react_1.useState)('');
-    const [movies, setMovies] = (0, react_1.useState)();
-    // @ts-ignore
-    const user = (0, react_redux_1.useSelector)(state => state.usersReducer);
     const dispatch = (0, react_redux_1.useDispatch)();
     const submitHandler = (event) => __awaiter(void 0, void 0, void 0, function* () {
         event.preventDefault();
-        console.log(user);
         dispatch((0, users_reducer_1.loginCreator)({ enteredEmail, enteredPassword }));
-        // await MovieService.getMovie().then(movies => console.log(movies))
-        console.log(user);
         setEnteredEmail('');
         setEnteredPassword('');
     });

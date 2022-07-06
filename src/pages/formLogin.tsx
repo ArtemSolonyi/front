@@ -6,23 +6,13 @@ import Button from "../components/Butttons/Button";
 // @ts-ignore
 import {loginCreator, usersReducer} from '../users/users.reducer'
 
-interface IUser {
-    email: string,
-    password: string
-}
-
-
 const FormLogin: FC = () => {
     const [enteredEmail, setEnteredEmail] = useState<string>('')
     const [enteredPassword, setEnteredPassword] = useState<string>('')
-    const [movies, setMovies] = useState()
-    // @ts-ignore
-    const user = useSelector(state => state.usersReducer)
     const dispatch = useDispatch()
     const submitHandler = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault()
         dispatch(loginCreator({enteredEmail,enteredPassword}))
-        // await MovieService.getMovie().then(movies => console.log(movies))
         setEnteredEmail('')
         setEnteredPassword('')
     }

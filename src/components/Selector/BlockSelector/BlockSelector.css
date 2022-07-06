@@ -1,0 +1,22 @@
+.block-selector{
+    color: #882C62;
+    position: relative;
+    margin-right: 20px;
+    -webkit-user-select: none;
+    border:5px solid peachpuff;
+    border-radius: 10px 0 10px 0;
+}
+.column {
+    margin-left: 18px;
+    max-width: 100%;
+    flex: 0 0 25%;
+    min-height: 1px;
+    margin-top:3px;
+    margin-bottom: 10px;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -15px;
+    margin-right: -15px;
+}

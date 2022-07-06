@@ -18,5 +18,16 @@ class MovieService {
             return yield movie.data;
         });
     }
+    static getCategories() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const categories = yield http_1.$api.get('movies/allcategories');
+            return categories.data;
+        });
+    }
+    static getMovieOfCategory(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield http_1.$api.get(`movies/categories?category=${id}`);
+        });
+    }
 }
 exports.MovieService = MovieService;

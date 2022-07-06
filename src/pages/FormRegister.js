@@ -16,14 +16,16 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
 const Input_1 = __importDefault(require("../components/Input"));
 const Button_1 = __importDefault(require("../components/Butttons/Button"));
-const AuthService_1 = __importDefault(require("../services/AuthService"));
+const react_redux_1 = require("react-redux");
+const users_reducer_1 = require("../users/users.reducer");
 const FormRegister = () => {
     const [enteredUsername, setEnteredUsername] = (0, react_1.useState)('');
     const [enteredEmail, setEnteredEmail] = (0, react_1.useState)('');
     const [enteredPassword, setEnteredPassword] = (0, react_1.useState)('');
+    const dispatch = (0, react_redux_1.useDispatch)();
     const submitHandler = (event) => __awaiter(void 0, void 0, void 0, function* () {
         event.preventDefault();
-        yield AuthService_1.default.registration(enteredEmail, enteredUsername, enteredPassword);
+        dispatch((0, users_reducer_1.registerCreater)({ enteredUsername, enteredEmail, enteredPassword }));
         setEnteredUsername('');
         setEnteredEmail('');
         setEnteredPassword('');

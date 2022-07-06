@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.setCookie = exports.getCookie = void 0;
+exports.deleteCookie = exports.setCookie = exports.getCookie = void 0;
 function getCookie(name) {
     const matches = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'));
     return matches ? decodeURIComponent(matches[1]) : false;
@@ -25,8 +25,9 @@ function setCookie(name, value, options = {}) {
     document.cookie = updatedCookie;
 }
 exports.setCookie = setCookie;
-// export function deleteCookie(name) {
-//     setCookie(name, '', {
-//         'max-age': -1,
-//     });
-// }
+function deleteCookie(name) {
+    setCookie(name, '', {
+        'max-age': -1,
+    });
+}
+exports.deleteCookie = deleteCookie;

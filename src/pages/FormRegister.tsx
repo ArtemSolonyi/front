@@ -2,16 +2,18 @@ import React, {FC, useState} from "react";
 import Input from "../components/Input";
 import Button from "../components/Butttons/Button";
 import AuthService from "../services/AuthService";
+import {useDispatch} from "react-redux";
+import {registerCreater} from "../users/users.reducer";
 
 
 const FormRegister: FC = () => {
     const [enteredUsername, setEnteredUsername] = useState<string>('')
     const [enteredEmail, setEnteredEmail] = useState<string>('')
     const [enteredPassword, setEnteredPassword] = useState<string>('')
-
+    const dispatch = useDispatch()
     const submitHandler = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault()
-        await AuthService.registration(enteredEmail, enteredUsername, enteredPassword)
+        dispatch(registerCreater({enteredUsername, enteredEmail, enteredPassword}))
         setEnteredUsername('')
         setEnteredEmail('')
         setEnteredPassword('')
