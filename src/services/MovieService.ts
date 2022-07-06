@@ -20,7 +20,8 @@ export class MovieService {
         return categories.data
     }
     static async getMovieOfCategory(id:string):Promise<any>{
-        return await $api.get<MovieResponse>(`movies/categories?category=${id}`)
+        const movies =  await $api.get<MovieResponse>(`movies/categories?category=${id}`)
+        return movies.data
     }
     // static async getAllMovies():Promise<any>{
     //     return await $api.get<MovieResponse>('movies')

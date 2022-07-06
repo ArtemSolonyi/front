@@ -26,7 +26,8 @@ class MovieService {
     }
     static getMovieOfCategory(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield http_1.$api.get(`movies/categories?category=${id}`);
+            const movies = yield http_1.$api.get(`movies/categories?category=${id}`);
+            return movies.data;
         });
     }
 }

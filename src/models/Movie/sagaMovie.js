@@ -17,9 +17,7 @@ function* getAllMovies(){
     yield put(getMoviesSuccess(movies))
 }
 function* getMoviesOfCategory(data){
-
     const categories = yield call(MovieService.getMovieOfCategory,data.payload)
-    console.log(categories)
     yield put(getMoviesOfCategorySuccess(categories))
 }
 export function* movieWatcher() {
