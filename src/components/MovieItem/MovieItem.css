@@ -1,0 +1,6 @@
+.movie-item {
+    border:1px solid red;
+    display: flex;
+    position: relative;
+    margin-bottom: 25px;
+}

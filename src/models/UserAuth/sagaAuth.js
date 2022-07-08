@@ -1,13 +1,13 @@
 import AuthService, {AuthResponse} from "../../services/AuthService";
 import {call, takeEvery, put} from 'redux-saga/effects'
-import {LOGIN} from "./user.reducer";
-import {loginSuccess, LOGOUT, logoutSuccess, REGISTER, registerSuccess} from "../../users/users.reducer";
+
+import {loginSuccess, LOGOUT, logoutSuccess, REGISTER, LOGIN, registerSuccess} from "../../users/users.reducer";
 import {deleteCookie} from "../../cookie";
 
 function* login(userData) {
     try {
-        yield call(AuthService.login, userData.payload.enteredEmail, userData.payload.enteredPassword)
-        yield put(loginSuccess())
+        const user = yield call(AuthService.login, userData.payload.enteredEmail, userData.payload.enteredPassword)
+        yield put(loginSuccess(user))
     } catch (e) {
         console.log(e)
     }
@@ -24,11 +24,11 @@ function* registration(userData) {
 }
 
 function* logout() {
-    try{
+    try {
         deleteCookie('accessToken')
         deleteCookie('refreshToken')
         yield put(logoutSuccess())
-    }catch (e){
+    } catch (e) {
 
     }
 }

@@ -15,7 +15,6 @@ class AuthService {
     static login(email, password) {
         return __awaiter(this, void 0, void 0, function* () {
             const sentData = yield http_1.$api.post('auth/login', { email, password });
-            console.log(sentData, 'sentData inside auth');
             (0, cookie_1.setCookie)('accessToken', sentData.data.accessToken);
             (0, cookie_1.setCookie)('refreshToken', sentData.data.refreshToken);
             return sentData;

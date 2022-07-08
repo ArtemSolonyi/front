@@ -1,8 +1,8 @@
-import Header from "../components/Header/Header";
+import Header from "../../components/Header/Header";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getCategories, getMovies} from "../models/Movie/movie.reducer";
-import Movies from "../components/Movies/Movies";
+import {getCategories, getMovies} from "../../models/Movie/movie.reducer";
+import Movies from "../../components/Movies/Movies";
 
 
 function  MainPage() {

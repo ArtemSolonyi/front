@@ -2,7 +2,7 @@ import axios, {AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse} from "axi
 import {getCookie, setCookie} from "../cookie";
 import {AuthResponse} from "../services/AuthService";
 
-export const API_URL = 'http://localhost:3003/api/v1/'
+export const API_URL = 'http://localhost:3005/api/v1/'
 
 export const $api = axios.create({
     withCredentials: false,

@@ -1,6 +1,7 @@
 const initialState = {
     isAuth: false,
-    kaif: true
+    kaif: true,
+    user:{},
 };
 
 
@@ -13,9 +14,8 @@ export const loginCreator = (data: any) => ({type: LOGIN, payload: data})
 export const REGISTER = "REGISTER"
 export const registerCreater = (data:any)=> ({type: REGISTER, payload: data})
 
-
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
-export const loginSuccess = () => ({type: LOGIN_SUCCESS})
+export const loginSuccess = (user:any) => ({type: LOGIN_SUCCESS,user:user})
 
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS"
 export const registerSuccess = () => ({type: REGISTER_SUCCESS})
@@ -28,7 +28,7 @@ export const usersReducer = (state: any = initialState, action: any) => {
         case LOGIN_SUCCESS:
             return (
                 {
-                    ...state, isAuth: true
+                    ...state, isAuth: true,user:action.user?.data?.user
                 })
         case REGISTER_SUCCESS:
             return (

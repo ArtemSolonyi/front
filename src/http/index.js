@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.$api = exports.API_URL = void 0;
 const axios_1 = __importDefault(require("axios"));
 const cookie_1 = require("../cookie");
-exports.API_URL = 'http://localhost:3003/api/v1/';
+exports.API_URL = 'http://localhost:3005/api/v1/';
 exports.$api = axios_1.default.create({
     withCredentials: false,
     baseURL: exports.API_URL

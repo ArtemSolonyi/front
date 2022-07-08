@@ -13,9 +13,13 @@ function Selector(props) {
     return (<span onMouseLeave={props.onMouseLeave} className={"selector"}>
         <div className={'row'}>
             {categories && categories.map((movie) =>
-                <span key={movie.id} id={movie.id} onClick={sendingCategoryMovie} className={'block-selector column'}>
-                    <b>{movie.category}</b>
-                </span>)}
+                <input type={"button"}
+                       key={movie.id}
+                       id={movie.id}
+                       value={movie.category}
+                       onClick={sendingCategoryMovie}
+                       className={'block-selector column'}>
+                </input>)}
         </div>
             </span>)
 }

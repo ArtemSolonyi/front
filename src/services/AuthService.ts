@@ -20,7 +20,6 @@ export interface AuthResponse {
 export default class AuthService {
     static async login(email: string, password: string) {
        const sentData = await $api.post<AuthResponse>('auth/login', {email, password})
-        console.log(sentData,'sentData inside auth')
         setCookie('accessToken', sentData.data.accessToken)
         setCookie('refreshToken', sentData.data.refreshToken)
         return sentData

@@ -12,16 +12,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MovieService = void 0;
 const http_1 = require("../http");
 class MovieService {
-    static getMovie() {
+    static getMovies() {
         return __awaiter(this, void 0, void 0, function* () {
             const movie = yield http_1.$api.get('movies');
-            return yield movie.data;
+            return movie.data;
         });
     }
     static getCategories() {
         return __awaiter(this, void 0, void 0, function* () {
             const categories = yield http_1.$api.get('movies/allcategories');
             return categories.data;
+        });
+    }
+    static getMovie(slug) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const movie = yield http_1.$api.get(`movies/slug/?slug=${slug}`);
+            return movie.data;
         });
     }
     static getMovieOfCategory(id) {
