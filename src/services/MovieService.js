@@ -30,6 +30,12 @@ class MovieService {
             return movie.data;
         });
     }
+    static setRating(data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const setRating = yield http_1.$api.patch('movies/rating', data);
+            return setRating.data;
+        });
+    }
     static getMovieOfCategory(id) {
         return __awaiter(this, void 0, void 0, function* () {
             const movies = yield http_1.$api.get(`movies/categories?category=${id}`);

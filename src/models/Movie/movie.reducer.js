@@ -2,12 +2,16 @@ export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const getCategories = () => ({type: GET_CATEGORIES})
 
 export const GET_MOVIE = 'GET_MOVIE'
-export const getMovie = (data) => ({type:GET_MOVIE,payload:data})
+export const getMovie = (data) => ({type: GET_MOVIE, payload: data})
 
 export const GET_MOVIE_SUCCESS = 'GET_MOVIE_SUCCESS'
-export const getMovieSuccess = (data)=>({type:GET_MOVIE_SUCCESS,payload:data})
+export const getMovieSuccess = (data) => ({type: GET_MOVIE_SUCCESS, payload: data})
 
+export const SET_RATING = 'SET_RATING'
+export const setRating = (data) => ({type: SET_RATING, payload: data})
 
+export const SET_RATING_SUCCESS = 'SET_RATING_SUCCESS'
+export const setRatingSuccess = (data)=>({type:SET_RATING_SUCCESS,payload:data})
 
 export const GET_MOVIES_OF_CATEGORY = 'GET_MOVIES_OF_CATEGORY'
 export const getMoviesOfCategory = (data) => ({type: GET_MOVIES_OF_CATEGORY, payload: data})
@@ -26,7 +30,7 @@ export const getCategoriesSuccess = (data) => ({type: GET_CATEGORIES_SUCCESS, pa
 const initialState = {
     categories: undefined,
     movies: undefined,
-    movie:undefined
+    movie: undefined
 };
 export const movieReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -44,6 +48,10 @@ export const movieReducer = (state = initialState, action) => {
             })
         case GET_MOVIE_SUCCESS:
             return ({
+                ...state, movie: action.payload,
+            })
+        case SET_RATING_SUCCESS:
+            return  ({
                 ...state, movie: action.payload,
             })
         default:

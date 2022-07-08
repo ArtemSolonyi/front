@@ -1,15 +1,17 @@
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import StarRating from "../StarRating/StarRating";
 import {useState} from "react";
+import {setRating} from "../../models/Movie/movie.reducer";
+
 
 
 function MovieItem() {
     const movieState = useSelector((state) => state.movieReducer.movie)
-    const [rating,setRating] = useState(movieState.rating)
+    const dispatch = useDispatch()
 
     const setRatingMovie = (event) => {
+        dispatch(setRating({movieId:movieState.id,rating:Number(event.target.value)}))
 
-        setRating(event.target.value)
     }
     return (<div>
         <div className={'movie-item'}>
@@ -19,10 +21,10 @@ function MovieItem() {
             src={'https://m.media-amazon.com/images/I/81Mahls3HnL._SL1500_.jpg'}
             alt={'s'}></img>
         </div>
-        {movieState.title} {movieState.description} {movieState.rating}/10
+        {movieState.title} {movieState.description} {movieState.rating}/5
         <StarRating
             valueStars={5}
-            setRating={rating}
+            setRating={movieState.rating}
             onChangeRating={setRatingMovie}/>
     </div>)
 }

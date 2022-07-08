@@ -12,7 +12,7 @@ function StarRating(props) {
             <React.Fragment
                 key={e}>
                 <input
-                    checked={props.setRating==e}
+                    // checked={props.setRating==e}
                     onChange={props.onChangeRating}
                     type="radio"
                     id={`star${e}`}

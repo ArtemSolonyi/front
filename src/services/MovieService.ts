@@ -11,24 +11,31 @@ interface MovieResponse {
 }
 
 export class MovieService {
-    static async getMovies():Promise<any> {
+    static async getMovies(): Promise<any> {
         const movie = await $api.get<MovieResponse>('movies')
         return movie.data
     }
-    static async getCategories():Promise<any>{
+
+    static async getCategories(): Promise<any> {
         const categories = await $api.get<MovieResponse>('movies/allcategories')
         return categories.data
     }
-    static async getMovie(slug:string):Promise<any>{
-        const movie = await $api.get<MovieResponse>(`movies/slug/?slug=${slug}`)
 
+    static async getMovie(slug: string): Promise<any> {
+        const movie = await $api.get<MovieResponse>(`movies/slug/?slug=${slug}`)
         return movie.data
     }
 
-    static async getMovieOfCategory(id:string):Promise<any>{
-        const movies =  await $api.get<MovieResponse>(`movies/categories?category=${id}`)
+    static async setRating(data:object): Promise<any> {
+        const setRating = await $api.patch<MovieService>('movies/rating',data)
+        return setRating.data
+    }
+
+    static async getMovieOfCategory(id: string): Promise<any> {
+        const movies = await $api.get<MovieResponse>(`movies/categories?category=${id}`)
         return movies.data
     }
+
     // static async getAllMovies():Promise<any>{
     //     return await $api.get<MovieResponse>('movies')
     // }
