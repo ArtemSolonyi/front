@@ -41,7 +41,7 @@ export class MovieService {
         return movies.data
     }
     static async createMovie(data:any){
-        const movie = await $api.post<MovieResponse>
+        await $api.post<MovieResponse>('movies',data.payload)
     }
 
     // static async getAllMovies():Promise<any>{

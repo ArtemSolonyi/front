@@ -45,5 +45,10 @@ class MovieService {
             return movies.data;
         });
     }
+    static createMovie(data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield http_1.$api.post('movies', data.payload);
+        });
+    }
 }
 exports.MovieService = MovieService;

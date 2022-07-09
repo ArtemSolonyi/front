@@ -32,7 +32,7 @@ function* setStarRatingToMovie(data){
     yield put(setRatingSuccess(setRating))
 }
 function* _createMovie(data){
-    const creatingMovie = yield call(MovieService.createMovie,data)
+     yield call(MovieService.createMovie,data)
 
 }
 export function* movieWatcher() {
