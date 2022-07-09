@@ -11,7 +11,7 @@ export const SET_RATING = 'SET_RATING'
 export const setRating = (data) => ({type: SET_RATING, payload: data})
 
 export const SET_RATING_SUCCESS = 'SET_RATING_SUCCESS'
-export const setRatingSuccess = (data)=>({type:SET_RATING_SUCCESS,payload:data})
+export const setRatingSuccess = (data) => ({type: SET_RATING_SUCCESS, payload: data})
 
 export const GET_MOVIES_OF_CATEGORY = 'GET_MOVIES_OF_CATEGORY'
 export const getMoviesOfCategory = (data) => ({type: GET_MOVIES_OF_CATEGORY, payload: data})
@@ -24,6 +24,8 @@ export const getMovies = () => ({type: GET_MOVIES})
 
 export const GET_MOVIES_SUCCESS = 'GET_MOVIES_SUCCESS'
 export const getMoviesSuccess = (data) => ({type: GET_MOVIES_SUCCESS, payload: data})
+export const CREATE_MOVIE = 'CREATE_MOVIE'
+export const createMovieAdmin = (data) => ({type: CREATE_MOVIE, payload: data})
 
 export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS'
 export const getCategoriesSuccess = (data) => ({type: GET_CATEGORIES_SUCCESS, payload: data})
@@ -51,7 +53,7 @@ export const movieReducer = (state = initialState, action) => {
                 ...state, movie: action.payload,
             })
         case SET_RATING_SUCCESS:
-            return  ({
+            return ({
                 ...state, movie: action.payload,
             })
         default:

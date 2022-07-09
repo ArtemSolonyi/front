@@ -1,6 +1,5 @@
 import {$api} from '../http'
 import {setCookie} from "../cookie";
-import {AxiosResponse} from "axios";
 
 
 interface IUser {
@@ -17,9 +16,13 @@ export interface AuthResponse {
 
 }
 
+export interface EmptyResponse {
+
+}
+
 export default class AuthService {
     static async login(email: string, password: string) {
-       const sentData = await $api.post<AuthResponse>('auth/login', {email, password})
+        const sentData = await $api.post<AuthResponse>('auth/login', {email, password})
         setCookie('accessToken', sentData.data.accessToken)
         setCookie('refreshToken', sentData.data.refreshToken)
         return sentData
@@ -33,8 +36,13 @@ export default class AuthService {
         return sentData
     }
 
-    //
-    // static async logout(email, password) {
-    //     return $api.post()
-    // }
+    static async checkAuth(refreshToken: string) {
+        const refresh = await $api.post<EmptyResponse>('auth/refresh', {refreshToken: refreshToken})
+        console.log(refresh,'response refreshTOken')
+        return refresh.data
+    }
+
+    static async logout(userId: string) {
+        return await $api.delete<EmptyResponse>(`auth/logout/?userId=${userId}`)
+    }
 }

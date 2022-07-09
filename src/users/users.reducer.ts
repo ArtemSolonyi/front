@@ -1,12 +1,15 @@
 const initialState = {
     isAuth: false,
-    kaif: true,
+    loading: false,
     user:{},
 };
 
+export const CHECK_AUTH = 'CHECK_AUTH'
+export const checkAuthCreator = (data:string)=>({type:CHECK_AUTH,payload:data})
+
 
 export const LOGOUT = "LOGOUT"
-export const logoutCreater = () => ({type: LOGOUT})
+export const logoutCreater = (userId:string) => ({type: LOGOUT,payload:userId})
 
 export const LOGIN = "LOGIN"
 export const loginCreator = (data: any) => ({type: LOGIN, payload: data})

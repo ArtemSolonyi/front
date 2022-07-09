@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 function Tab(props) {
     return (
         <div
+            onClick={props.onClickLogout}
             style={{color: props.color, width: props.width}}
             onMouseOver={props.onHover}
             onMouseOut={props.onOut}

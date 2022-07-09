@@ -32,7 +32,10 @@ class MovieService {
     }
     static setRating(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            const setRating = yield http_1.$api.patch('movies/rating', data);
+            const setRating = yield http_1.$api.patch('movies/rating', {
+                movieId: data === null || data === void 0 ? void 0 : data.movieId,
+                rating: data === null || data === void 0 ? void 0 : data.rating
+            });
             return setRating.data;
         });
     }

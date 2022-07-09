@@ -3,6 +3,7 @@ import {MovieService} from "../../services/MovieService";
 import {
     GET_CATEGORIES, GET_MOVIE, GET_MOVIES,
     GET_MOVIES_OF_CATEGORY,
+    CREATE_MOVIE,
     getCategoriesSuccess,
     getMoviesOfCategorySuccess,
     getMoviesSuccess, getMovieSuccess, SET_RATING, setRatingSuccess
@@ -30,12 +31,17 @@ function* setStarRatingToMovie(data){
     const setRating = yield call(MovieService.setRating,data.payload)
     yield put(setRatingSuccess(setRating))
 }
+function* _createMovie(data){
+    const creatingMovie = yield call(MovieService.createMovie,data)
+
+}
 export function* movieWatcher() {
     yield takeEvery(GET_MOVIES,getAllMovies)
     yield takeEvery(GET_MOVIE,getMovie)
     yield takeEvery(GET_CATEGORIES, getCategories)
     yield takeEvery(GET_MOVIES_OF_CATEGORY, getMoviesOfCategory)
     yield takeEvery(SET_RATING,setStarRatingToMovie)
+    yield takeEvery(CREATE_MOVIE,_createMovie)
 }
 
 

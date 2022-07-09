@@ -28,5 +28,17 @@ class AuthService {
             return sentData;
         });
     }
+    static checkAuth(refreshToken) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const refresh = yield http_1.$api.post('auth/refresh', { refreshToken: refreshToken });
+            console.log(refresh, 'response refreshTOken');
+            return refresh.data;
+        });
+    }
+    static logout(userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield http_1.$api.delete(`auth/logout/?userId=${userId}`);
+        });
+    }
 }
 exports.default = AuthService;

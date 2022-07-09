@@ -1,13 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.usersReducer = exports.logoutSuccess = exports.LOGOUT_SUCCESS = exports.registerSuccess = exports.REGISTER_SUCCESS = exports.loginSuccess = exports.LOGIN_SUCCESS = exports.registerCreater = exports.REGISTER = exports.loginCreator = exports.LOGIN = exports.logoutCreater = exports.LOGOUT = void 0;
+exports.usersReducer = exports.logoutSuccess = exports.LOGOUT_SUCCESS = exports.registerSuccess = exports.REGISTER_SUCCESS = exports.loginSuccess = exports.LOGIN_SUCCESS = exports.registerCreater = exports.REGISTER = exports.loginCreator = exports.LOGIN = exports.logoutCreater = exports.LOGOUT = exports.checkAuthCreator = exports.CHECK_AUTH = void 0;
 const initialState = {
     isAuth: false,
-    kaif: true,
+    loading: false,
     user: {},
 };
+exports.CHECK_AUTH = 'CHECK_AUTH';
+const checkAuthCreator = (data) => ({ type: exports.CHECK_AUTH, payload: data });
+exports.checkAuthCreator = checkAuthCreator;
 exports.LOGOUT = "LOGOUT";
-const logoutCreater = () => ({ type: exports.LOGOUT });
+const logoutCreater = (userId) => ({ type: exports.LOGOUT, payload: userId });
 exports.logoutCreater = logoutCreater;
 exports.LOGIN = "LOGIN";
 const loginCreator = (data) => ({ type: exports.LOGIN, payload: data });

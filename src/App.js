@@ -4,22 +4,26 @@ import FormRegister from "./pages/FormRegister/FormRegister";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import {useDispatch, useSelector,} from "react-redux";
 import {getCookie} from "./cookie";
-import {loginSuccess, logoutCreater, logoutSuccess, usersReducer} from "./users/users.reducer";
+import {checkAuthCreator, loginSuccess, logoutCreater, logoutSuccess, usersReducer} from "./users/users.reducer";
 import {useEffect} from "react";
 import MainPage from "./pages/MainPage/MainPage";
 import MoviePage from "./pages/Movie/MoviePage";
+import AdminPage from "./pages/AdminPage/AdminPage";
 
 function App() {
     const refreshToken = getCookie('refreshToken')
     const dispatch = useDispatch()
+    const user = useSelector((state)=>state.usersReducer)
+    console.log(user,'user')
+    const isAuth = user.isAuth
     useEffect(() => {
-        if (refreshToken) {
-            dispatch(loginSuccess())
+        if (refreshToken && !isAuth) {
+            dispatch(checkAuthCreator(refreshToken))
         } else {
             dispatch(logoutSuccess())
         }
 
-    })
+    },[])
 
     return (
         <Router>
@@ -29,6 +33,7 @@ function App() {
                     <Route path="/login" element={<FormLogin/>}/>
                     <Route path="/registration" element={<FormRegister/>}/>
                     <Route path="/movie/*" element={<MoviePage/>}/>
+                    {user.user.role==='admin' && <Route path="/admin" element={<AdminPage/>}/>}
                 </Routes>
             </div>
         </Router>

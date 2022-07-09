@@ -1,8 +1,8 @@
 import {$api} from '../http'
 import {AxiosResponse} from "axios";
+import {type} from "@testing-library/user-event/dist/type";
 
 interface MovieResponse {
-
     // "_id": string,
     // "title": string,
     // "description":string
@@ -26,14 +26,22 @@ export class MovieService {
         return movie.data
     }
 
-    static async setRating(data:object): Promise<any> {
-        const setRating = await $api.patch<MovieService>('movies/rating',data)
+    static async setRating(data: any): Promise<any> {
+
+        const setRating = await $api.patch<MovieResponse>('movies/rating', {
+            movieId: data?.movieId,
+            rating: data?.rating
+        })
+
         return setRating.data
     }
 
     static async getMovieOfCategory(id: string): Promise<any> {
         const movies = await $api.get<MovieResponse>(`movies/categories?category=${id}`)
         return movies.data
+    }
+    static async createMovie(data:any){
+        const movie = await $api.post<MovieResponse>
     }
 
     // static async getAllMovies():Promise<any>{
