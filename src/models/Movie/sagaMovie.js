@@ -6,7 +6,8 @@ import {
     CREATE_MOVIE,
     getCategoriesSuccess,
     getMoviesOfCategorySuccess,
-    getMoviesSuccess, getMovieSuccess, SET_RATING, setRatingSuccess
+    createCategorySuccess,
+    getMoviesSuccess, getMovieSuccess, SET_RATING, setRatingSuccess, CREATE_CATEGORY
 } from "./movie.reducer";
 
 function* getCategories() {
@@ -32,8 +33,11 @@ function* setStarRatingToMovie(data){
     yield put(setRatingSuccess(setRating))
 }
 function* _createMovie(data){
-     yield call(MovieService.createMovie,data)
-
+     yield call(MovieService._createMovie,data)
+}
+function* _createCategory(data){
+    const category = yield call(MovieService._createCategory,data)
+    yield put(createCategorySuccess(category))
 }
 export function* movieWatcher() {
     yield takeEvery(GET_MOVIES,getAllMovies)
@@ -42,6 +46,7 @@ export function* movieWatcher() {
     yield takeEvery(GET_MOVIES_OF_CATEGORY, getMoviesOfCategory)
     yield takeEvery(SET_RATING,setStarRatingToMovie)
     yield takeEvery(CREATE_MOVIE,_createMovie)
+    yield takeEvery(CREATE_CATEGORY,_createCategory)
 }
 
 

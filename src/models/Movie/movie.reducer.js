@@ -19,6 +19,13 @@ export const getMoviesOfCategory = (data) => ({type: GET_MOVIES_OF_CATEGORY, pay
 export const GET_MOVIES_OF_CATEGORY_SUCCESS = 'GET_MOVIES_OF_CATEGORY_SUCCESS'
 export const getMoviesOfCategorySuccess = (data) => ({type: GET_MOVIES_OF_CATEGORY_SUCCESS, payload: data})
 
+export const CREATE_CATEGORY = 'CREATE_CATEGORY'
+export const _createCategory = (data) => ({type: CREATE_CATEGORY, payload: data})
+
+export const CREATE_CATEGORY_SUCCESS = 'CREATE_CATEGORY_SUCCESS'
+export const createCategorySuccess = (data) => ({type: CREATE_CATEGORY_SUCCESS, payload: data})
+
+
 export const GET_MOVIES = 'GET_MOVIES'
 export const getMovies = () => ({type: GET_MOVIES})
 
@@ -34,8 +41,13 @@ const initialState = {
     movies: undefined,
     movie: undefined
 };
+
 export const movieReducer = (state = initialState, action) => {
     switch (action.type) {
+        case CREATE_CATEGORY_SUCCESS:
+            return ({
+                ...state, categories:[...state.categories,action.payload]
+            })
         case GET_CATEGORIES_SUCCESS:
             return ({
                 ...state, categories: action.payload,

@@ -11,7 +11,7 @@ import {
     CHECK_AUTH
 } from "../../users/users.reducer";
 import {deleteCookie, setCookie} from "../../cookie";
-import {MovieService} from "../../services/MovieService";
+
 
 function* login(userData) {
     try {
@@ -34,10 +34,9 @@ function* registration(userData) {
 
 function* logout(userId) {
     try {
-        console.log(userId.payload.userId, "re")
         deleteCookie('accessToken')
         deleteCookie('refreshToken')
-        yield call(AuthService.logout, userId.payload.userId)
+        yield call(AuthService.logout, userId.payload)
         yield put(logoutSuccess())
     } catch (e) {
 
@@ -45,10 +44,7 @@ function* logout(userId) {
 }
 
 function* checkAuth(data) {
-    console.log(data,'data')
-    console.log(data.payload,'data.payload.refreshToken')
     const user = yield call(AuthService.checkAuth,data.payload)
-    console.log(user,"checkAuth")
     setCookie('accessToken',user.accessToken)
     setCookie('refreshToken',user.refreshToken)
     yield put(loginSuccess({data:user}))

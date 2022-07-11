@@ -1,5 +1,5 @@
 import './Header.css'
-import Tab from "../Tab/Tab";
+import Tab from "./Tab/Tab";
 import Selector from "../Selector/Selector";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -18,9 +18,7 @@ function Header() {
     const onOutHandler = () => {
         setSelector(false)
     }
-    const onClickLogoutHandler = (event) => {
-        console.log(event)
-        console.log(userReducer)
+    const onClickLogoutHandler = () => {
         dispatch(logoutCreater(userReducer.user.id))
     }
     return (<div className={"block-header"}>

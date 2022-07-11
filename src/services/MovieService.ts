@@ -25,9 +25,7 @@ export class MovieService {
         const movie = await $api.get<MovieResponse>(`movies/slug/?slug=${slug}`)
         return movie.data
     }
-
     static async setRating(data: any): Promise<any> {
-
         const setRating = await $api.patch<MovieResponse>('movies/rating', {
             movieId: data?.movieId,
             rating: data?.rating
@@ -40,10 +38,13 @@ export class MovieService {
         const movies = await $api.get<MovieResponse>(`movies/categories?category=${id}`)
         return movies.data
     }
-    static async createMovie(data:any){
+    static async _createMovie(data:any){
         await $api.post<MovieResponse>('movies',data.payload)
     }
-
+    static async _createCategory(data:any){
+        const category = await $api.post<MovieResponse>('movies/allCategories',{category:data.payload})
+        return category.data
+    }
     // static async getAllMovies():Promise<any>{
     //     return await $api.get<MovieResponse>('movies')
     // }

@@ -9,7 +9,7 @@ function AdminPage() {
     useEffect(() => {
             dispatch(getMovies())
             dispatch(getCategories())
-        console.log('re')
+
     }, [])
     return (<div>
        <CreateMovie></CreateMovie>
